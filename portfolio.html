@@ -1,32 +1,140 @@
-<!DOCTYPE html> 
-<html lang="th"> 
-<head> 
- <meta charset="UTF-8"> 
- <meta viewport="width=device-width, initial-scale=1.0"> 
- <title>แฟ้มสะสมงานของฉัน </title> 
- <style> 
-body { font-family: sans-serif; background-color: #FFB6C1; text-align: center;  padding: 30px; } 
-.container { max-width: 800px; margin: 0 auto; } 
-.project-card { background: white; padding: 20px; margin: 20px 0; border-radius:  8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: left; } 
-.btn { display: inline-block; background: #F33A6A; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 20px; } 
- </style> 
-</head> 
-<body> 
- <div class="container"> 
- <h1> แฟ้มสะสมงาน (Portfolio)</h1> 
- <p>นี่คือพื้นที่รวบรวมผลงานและกิจกรรมที่ภูมิใจฮะ</p> 
-<!-- กล่องผลงานชิ้นที่ 1 --> 
- <div class="project-card"> 
- <h3>1. โครงงาน/ชิ้นงานวิทยาศาสตร์คำนวณ</h3> 
- <p>รายละเอียดชิ้นงาน: ได้รู้วิธีการเอาตัวรอด 100วัน ในป่า</p> 
- </div> 
-<!-- กล่องผลงานชิ้นที่ 2 --> 
- <div class="project-card"> 
- <h3>2. กิจกรรม/เกียรติบัตรที่ได้รับ</h3> 
- <p>รายละเอียดชิ้นงาน: เข้าร่วมการแข่งขันกีฬาฟุตบอลต่อต้านภัยยาเสพติด</p> 
- </div> 
-<!-- ปุ่มกดกลับหน้าแรก --> 
- <a href="index.html" class="btn"> กลับหน้าแรก</a> 
- </div> 
-</body> 
-</html>  
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แฟ้มสะสมงานของฉัน</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: sans-serif;
+      background-color: #FFB6C1;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .container { max-width: 800px; margin: 0 auto; }
+
+    /* ===== โปรไฟล์ ===== */
+    .profile-section {
+      background: white;
+      border-radius: 12px;
+      padding: 30px 20px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .avatar-wrapper {
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 14px;
+    }
+
+    .avatar-glow {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, #ff80ab, #f33a6a, #ff80ab);
+      box-shadow:
+        0 0 10px 3px rgba(243, 58, 106, 0.6),
+        0 0 24px 8px rgba(255, 128, 171, 0.4),
+        0 0 40px 14px rgba(243, 58, 106, 0.2);
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow:
+          0 0 10px 3px rgba(243, 58, 106, 0.6),
+          0 0 24px 8px rgba(255, 128, 171, 0.4),
+          0 0 40px 14px rgba(243, 58, 106, 0.2);
+      }
+      50% {
+        box-shadow:
+          0 0 16px 6px rgba(243, 58, 106, 0.9),
+          0 0 36px 14px rgba(255, 128, 171, 0.6),
+          0 0 56px 20px rgba(243, 58, 106, 0.3);
+      }
+    }
+
+    .avatar-glow img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .profile-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #c0184e;
+      margin-bottom: 4px;
+    }
+
+    .profile-sub { color: #888; font-size: 0.88rem; }
+
+    /* ===== การ์ด ===== */
+    .project-card {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .project-card h3 { color: #c0184e; margin-bottom: 8px; }
+    .project-card p { color: #555; line-height: 1.6; }
+
+    /* ===== ปุ่ม ===== */
+    .btn {
+      display: inline-block;
+      background: #F33A6A;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      transition: background 0.2s;
+    }
+
+    .btn:hover { background: #c0184e; }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- โปรไฟล์ -->
+    <div class="profile-section">
+      <div class="avatar-wrapper">
+        <div class="avatar-glow">
+          <img src="profile.jpg" alt="รูปโปรไฟล์">
+        </div>
+      </div>
+
+      <div class="profile-name">ชื่อ - นามสกุล</div>
+      <div class="profile-sub">นักเรียนชั้น ม.__ โรงเรียน__________</div>
+    </div>
+
+    <h1>แฟ้มสะสมงาน (Portfolio)</h1>
+    <p style="margin: 8px 0 20px; color:#555;">นี่คือพื้นที่รวบรวมผลงานและกิจกรรมที่ภูมิใจฮะ</p>
+
+    <!-- กล่องผลงานชิ้นที่ 1 -->
+    <div class="project-card">
+      <h3>1. โครงงาน/ชิ้นงานวิทยาศาสตร์คำนวณ</h3>
+      <p>รายละเอียดชิ้นงาน: ได้รู้วิธีการเอาตัวรอด 100วัน ในป่า</p>
+    </div>
+
+    <!-- กล่องผลงานชิ้นที่ 2 -->
+    <div class="project-card">
+      <h3>2. กิจกรรม/เกียรติบัตรที่ได้รับ</h3>
+      <p>รายละเอียดชิ้นงาน: เข้าร่วมการแข่งขันกีฬาฟุตบอลต่อต้านภัยยาเสพติด</p>
+    </div>
+
+    <a href="index.html" class="btn">กลับหน้าแรก</a>
+  </div>
+</body>
+</html>
