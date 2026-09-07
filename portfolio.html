@@ -1,148 +1,129 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>แฟ้มสะสมงานของฉัน</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: sans-serif;
-      background-color: #FFB6C1;
-      text-align: center;
-      padding: 30px;
-    }
-
-    .container { max-width: 800px; margin: 0 auto; }
-
-    /* ===== โปรไฟล์ ===== */
-    .profile-section {
-      background: white;
-      border-radius: 12px;
-      padding: 30px 20px 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .avatar-wrapper {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 14px;
-    }
-
-    .avatar-glow {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      padding: 4px;
-      background: linear-gradient(135deg, #ff80ab, #f33a6a, #ff80ab);
-      box-shadow:
-        0 0 10px 3px rgba(243, 58, 106, 0.6),
-        0 0 24px 8px rgba(255, 128, 171, 0.4),
-        0 0 40px 14px rgba(243, 58, 106, 0.2);
-      animation: pulseGlow 2s ease-in-out infinite;
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% {
-        box-shadow:
-          0 0 10px 3px rgba(243, 58, 106, 0.6),
-          0 0 24px 8px rgba(255, 128, 171, 0.4),
-          0 0 40px 14px rgba(243, 58, 106, 0.2);
-      }
-      50% {
-        box-shadow:
-          0 0 16px 6px rgba(243, 58, 106, 0.9),
-          0 0 36px 14px rgba(255, 128, 171, 0.6),
-          0 0 56px 20px rgba(243, 58, 106, 0.3);
-      }
-    }
-
-    .avatar-glow img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .profile-name {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #c0184e;
-      margin-bottom: 4px;
-    }
-
-    .profile-sub { color: #888; font-size: 0.88rem; }
-
-    /* ===== การ์ด ===== */
-    .project-card {
-      background: white;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      text-align: left;
-    }
-
-    .project-card h3 { color: #c0184e; margin-bottom: 8px; }
-    .project-card p { color: #555; line-height: 1.6; }
-
-    /* ===== ปุ่ม ===== */
-    .btn {
-      display: inline-block;
-      background: #F33A6A;
-      color: white;
-      padding: 10px 20px;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-top: 20px;
-      transition: background 0.2s;
-    }
-
-    .btn:hover { background: #c0184e; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดส่วนตัว - วสุพล สมาธิ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style> body { font-family: 'Kanit', sans-serif; } </style>
 </head>
-<body>
-  <div class="container">
+<body class="bg-slate-950 text-slate-100 min-h-screen">
 
-    <!-- โปรไฟล์ -->
-    <div class="profile-section">
-      <div class="avatar-wrapper">
-        <div class="avatar-glow">
-          <img src="IMG_2895.jpeg" alt="รูปโปรไฟล์">
+    <!-- Sticky Navigation Menu (แถบปุ่มกดสลับหัวข้อแบบเท่ๆ ด้านบน) -->
+    <nav class="sticky top-4 z-50 max-w-4xl mx-auto px-4 my-4">
+        <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-2 rounded-2xl shadow-xl flex justify-between items-center">
+            <a href="index.html" class="px-3 py-2 text-xs font-semibold text-slate-400 hover:text-white transition flex items-center gap-1">
+                <i class="fa-solid fa-arrow-left"></i> <span class="hidden sm:inline">หน้าแรก</span>
+            </a>
+            
+            <div class="flex gap-1 md:gap-2">
+                <a href="#profile" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/10 transition">
+                    <i class="fa-solid fa-user text-cyan-400 mr-1"></i> ประวัติ
+                </a>
+                <a href="#education" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-purple-400 border border-purple-500/30 hover:bg-purple-500/10 transition">
+                    <i class="fa-solid fa-graduation-cap text-purple-400 mr-1"></i> การศึกษา
+                </a>
+                <a href="#certificates" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/10 transition">
+                    <i class="fa-solid fa-award text-emerald-400 mr-1"></i> ผลงาน
+                </a>
+            </div>
         </div>
-      </div>
+    </nav>
 
-      <div class="profile-name">ชื่อ วสุพล นามสกุล สมาธิ</div>
-      <div class="profile-sub">นักเรียนชั้น ม.6/2 โรงเรียน บ้านบึงอุตสาหกรรมนุเคราะห์ </div>
-    </div>
+    <main class="max-w-4xl mx-auto px-6 py-8 space-y-16">
+        
+        <!-- SECTION 1: ประวัติส่วนตัว (สำคัญที่สุด) -->
+        <section id="profile" class="scroll-mt-24 bg-slate-900/60 border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden">
+            <div class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4">
+                <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-user-astronaut"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">1. ประวัติส่วนตัว (Personal Profile)</h2>
+                    <p class="text-xs text-slate-400">ข้อมูลพื้นฐาน ทักษะความสามารถ และช่องทางการติดต่อ</p>
+                </div>
+            </div>
 
-    <h1>แฟ้มสะสมงาน (Portfolio)</h1>
-    <p style="margin: 8px 0 20px; color:#555;">นี่คือพื้นที่รวบรวมผลงานและกิจกรรมที่ภูมิใจฮะ</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-300">
+                <div class="space-y-3 text-sm">
+                    <p><strong class="text-cyan-400">ชื่อ-นามสกุล:</strong> นาย วสุพล สมาธิ</p>
+                    <p><strong class="text-cyan-400">ระดับชั้น:</strong> มัธยมศึกษาปีที่ 6/2</p>
+                    <p><strong class="text-cyan-400">แผนการเรียน:</strong> โครงการห้องเรียนพิเศษ Gifted Program</p>
+                    <p><strong class="text-cyan-400">แผนงานอนาคต:</strong> คณะวิศวกรรมศาสตร์ / วิทยาการคอมพิวเตอร์</p>
+                </div>
+                <div class="space-y-3 text-sm">
+                    <p><strong class="text-cyan-400"><i class="fa-solid fa-envelope"></i> อีเมล:</strong> wasupol.s@email.com</p>
+                    <p><strong class="text-cyan-400"><i class="fa-solid fa-phone"></i> เบอร์โทรศัพท์:</strong> 08X-XXX-XXXX</p>
+                    <p><strong class="text-cyan-400"><i class="fa-brands fa-github"></i> GitHub:</strong> github.com/username</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- กล่องผลงานชิ้นที่ 1 -->
-    <div class="project-card">
-      <h3>1. โครงงาน/ชิ้นงานวิทยาศาสตร์คำนวณ</h3>
-      <p>รายละเอียดชิ้นงาน: ได้รู้วิธีการเอาตัวรอด 100วัน ในป่า</p>
-    </div>
+        <!-- SECTION 2: ประวัติการศึกษา -->
+        <section id="education" class="scroll-mt-24 bg-slate-900/60 border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden">
+            <div class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4">
+                <div class="w-10 h-10 rounded-xl bg-purple-950 text-purple-400 border border-purple-500/30 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">2. ประวัติการศึกษา (Education)</h2>
+                    <p class="text-xs text-slate-400">เส้นทางการศึกษาและระดับผลการเรียน</p>
+                </div>
+            </div>
 
-    <!-- กล่องผลงานชิ้นที่ 2 -->
-    <div class="project-card">
-      <h3>2. กิจกรรม/เกียรติบัตรที่ได้รับ</h3>
-      <p>รายละเอียดชิ้นงาน: เข้าร่วมการแข่งขันกีฬาฟุตบอลต่อต้านภัยยาเสพติด</p>
-    </div>
-  
-    <!-- กล่องผลงานชิ้นที่ 3 -->
-    <div class="project-card">
-      <h3>3. กิจกรรมพิเศษ</h3>
-      <p>รายละเอียดชิ้นงาน: ถ่ายรูปกับมายเมทเนท</p>
-    </div>
- 
-    <a href="index.html" class="btn">กลับหน้าแรก</a>
-  </div>
+            <div class="border-l-2 border-purple-500/40 pl-6 ml-2 space-y-8">
+                <div class="relative">
+                    <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-purple-500"></span>
+                    <span class="text-xs font-mono text-purple-400">2023 - ปัจจุบัน</span>
+                    <h3 class="font-bold text-lg text-white">ระดับมัธยมศึกษาตอนปลาย (ม.4 - ม.6)</h3>
+                    <p class="text-slate-300 text-sm">โครงการห้องเรียนพิเศษ (Gifted Program)</p>
+                    <p class="text-xs text-purple-300 mt-1">GPAX สะสม: X.XX</p>
+                </div>
+                <div class="relative">
+                    <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-slate-700"></span>
+                    <span class="text-xs font-mono text-slate-500">2020 - 2022</span>
+                    <h3 class="font-semibold text-base text-slate-300">ระดับมัธยมศึกษาตอนต้น (ม.1 - ม.3)</h3>
+                    <p class="text-slate-400 text-sm">โรงเรียน [ชื่อโรงเรียนของคุณ]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: เกียรติบัตรและผลงาน -->
+        <section id="certificates" class="scroll-mt-24 bg-slate-900/60 border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden">
+            <div class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4">
+                <div class="w-10 h-10 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">3. เกียรติบัตร & ผลงาน (Certificates)</h2>
+                    <p class="text-xs text-slate-400">รางวัลและความภาคภูมิใจที่ได้รับ</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="bg-slate-950 border border-slate-800 p-4 rounded-2xl hover:border-emerald-500/40 transition">
+                    <div class="h-40 bg-slate-900 rounded-xl mb-3 flex items-center justify-center text-slate-600 border border-slate-800/50">
+                        <i class="fa-solid fa-image text-3xl"></i>
+                    </div>
+                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded">วิชาการ / แข่งขัน</span>
+                    <h3 class="font-bold text-white mt-1">รางวัลชนะเลิศการแข่งขัน X</h3>
+                    <p class="text-xs text-slate-400 mt-1">เข้าร่วมโครงการแข่งขันระดับจังหวัด/ประเทศ ในนามนักเรียน Gifted</p>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 p-4 rounded-2xl hover:border-emerald-500/40 transition">
+                    <div class="h-40 bg-slate-900 rounded-xl mb-3 flex items-center justify-center text-slate-600 border border-slate-800/50">
+                        <i class="fa-solid fa-image text-3xl"></i>
+                    </div>
+                    <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950 px-2 py-0.5 rounded">อบรม / สัมมนา</span>
+                    <h3 class="font-bold text-white mt-1">ผ่านการอบรมค่ายวิชาการ Y</h3>
+                    <p class="text-xs text-slate-400 mt-1">พัฒนาทักษะด้านเทคโนโลยีและการแก้ปัญหาโจทย์ระดับสูง</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
 </body>
 </html>
-<!-- วางบรรทัดนี้ไว้ใต้ <meta charset="UTF-8"> ก็ได้ครับ -->
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+
