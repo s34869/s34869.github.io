@@ -214,12 +214,11 @@
         // --- 1. Preloader Script ---
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
-            // หน่วงเวลาเล็กน้อยเพื่อให้เห็นแอนิเมชัน
             setTimeout(() => {
                 preloader.classList.add('opacity-0', 'pointer-events-none');
                 setTimeout(() => {
                     preloader.style.display = 'none';
-                }, 500); // รอให้ fade out เสร็จค่อยซ่อน element
+                }, 500); 
             }, 800);
         });
 
@@ -314,6 +313,9 @@
 
             requestAnimationFrame(animate);
         }
+        
+        // แก้ไขตรงนี้: เรียกใช้ฟังก์ชันเพื่อให้ดาวเริ่มทำงาน
+        animate(); 
     </script>
 </body>
 </html>
