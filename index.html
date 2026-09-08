@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Kanit', sans-serif; }
-
         @keyframes rocketFly {
             0%, 100% { transform: translateY(0px) rotate(-45deg); }
             50% { transform: translateY(-15px) rotate(-45deg); }
@@ -20,138 +19,154 @@
         }
         .animate-rocket { animation: rocketFly 1.2s ease-in-out infinite; }
         .animate-flame { animation: flamePulse 0.4s ease-in-out infinite; }
-
         @keyframes pageEnter {
-            from {
-                opacity: 0;
-                transform: translateY(25px) scale(0.98);
-                filter: blur(6px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+            from { opacity: 0; transform: translateY(25px) scale(0.98); filter: blur(6px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
         }
-        .page-enter {
-            animation: pageEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        .page-enter { animation: pageEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4 md:p-6 relative overflow-x-hidden">
+<body class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden">
 
-    <!-- Canvas พื้นหลังดาวตก (Shooting Stars Canvas Engine) -->
-    <canvas id="shootingStarsCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
-
-    <!-- Preloader จรวด -->
+    <!-- Preloader -->
     <div id="preloader" class="fixed inset-0 z-[9999] bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-500">
         <div class="relative flex flex-col items-center justify-center">
             <div class="animate-rocket text-5xl text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.6)]">
                 <i class="fa-solid fa-rocket"></i>
             </div>
-            <div class="animate-flame w-4 h-6 bg-gradient-to-b from-orange-500 to-yellow-300 rounded-full blur-sm -mt-1 transform rotate-180 shadow-[0_0_12px_#f97316]"></div>
+            <div class="animate-flame w-4 h-6 bg-gradient-to-b from-cyan-500 to-blue-400 rounded-full blur-sm -mt-1 transform rotate-180 shadow-[0_0_12px_#38bdf8]"></div>
         </div>
-        <p class="text-xs font-mono text-cyan-400 tracking-[0.3em] mt-6 animate-pulse">LAUNCHING...</p>
+        <p class="text-xs font-mono text-cyan-400 tracking-[0.3em] mt-6 animate-pulse">WELCOME TO PORTFOLIO...</p>
     </div>
 
-    <!-- Main Profile Card Container -->
-    <main class="max-w-md w-full bg-slate-900/80 border border-slate-800 rounded-3xl p-6 md:p-8 text-center shadow-2xl backdrop-blur-md page-enter relative z-10">
-        
-        <!-- Profile Image -->
-        <div class="w-28 h-28 mx-auto mb-4 rounded-full border-2 border-cyan-400/80 p-1 overflow-hidden shadow-lg shadow-cyan-500/20 bg-slate-950 relative group">
-            <img src="file_00000000aeb0820b96665629df534e91.jpg" alt="วสุพล สมาธิ" class="w-full h-full object-cover rounded-full group-hover:scale-105 transition duration-300">
-        </div>
+    <!-- Canvas ดาวตก -->
+    <canvas id="shootingStarsCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
-        <!-- Name & Title -->
-        <span class="inline-block px-3 py-1 bg-cyan-950/80 border border-cyan-500/30 rounded-full text-[11px] font-mono text-cyan-400 mb-3">
-            ✨ Student Portfolio
-        </span>
-        <h1 class="text-2xl font-bold text-white mb-1">นายวสุพล สมาธิ</h1>
-        <p class="text-xs text-cyan-400 font-medium mb-4">โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
+    <div class="relative z-10 page-enter">
+        <!-- Navigation Menu -->
+        <nav class="sticky top-4 z-50 max-w-4xl mx-auto px-4 my-4">
+            <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-2 rounded-2xl shadow-xl flex justify-between items-center gap-2">
+                <a href="index.html" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500/20 text-cyan-400 border border-cyan-500/50 flex items-center gap-1 shrink-0">
+                    <i class="fa-solid fa-house text-cyan-400"></i> หน้าแรก
+                </a>
+                
+                <span class="font-bold text-xs sm:text-sm bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent px-1 hidden sm:inline truncate">
+                    วสุพล สมาธิ
+                </span>
 
-        <!-- Foreword / คำนำ -->
-        <div class="mb-6 bg-slate-950/50 border border-slate-800 p-4 rounded-2xl relative text-left group hover:border-cyan-500/30 transition duration-300">
-            <div class="absolute -top-3 left-4 bg-slate-900 px-2 text-cyan-400 text-xs font-semibold flex items-center gap-1">
-                <i class="fa-solid fa-book-open"></i> คำนำ (Foreword)
+                <div class="flex gap-1 sm:gap-1.5 overflow-x-auto py-0.5">
+                    <a href="preface.html" class="px-2.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-medium bg-slate-800 text-slate-400 hover:text-rose-400 border border-slate-700 hover:border-rose-500/30 transition shrink-0">
+                        <i class="fa-solid fa-book-open text-rose-400 mr-1"></i> คำนำ
+                    </a>
+                    <a href="details.html" class="px-2.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-medium bg-slate-800 text-slate-400 hover:text-cyan-400 border border-slate-700 hover:border-cyan-500/30 transition shrink-0">
+                        <i class="fa-solid fa-user text-cyan-400 mr-1"></i> ประวัติ
+                    </a>
+                    <a href="education.html" class="px-2.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-medium bg-slate-800 text-slate-400 hover:text-purple-400 border border-slate-700 hover:border-purple-500/30 transition shrink-0">
+                        <i class="fa-solid fa-graduation-cap text-purple-400 mr-1"></i> การศึกษา
+                    </a>
+                    <a href="certificates.html" class="px-2.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-medium bg-slate-800 text-slate-400 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500/30 transition shrink-0">
+                        <i class="fa-solid fa-award text-emerald-400 mr-1"></i> ผลงาน
+                    </a>
+                </div>
             </div>
-            <i class="fa-solid fa-quote-left text-slate-700 text-2xl absolute top-3 right-4 opacity-50"></i>
-            <p class="text-[11px] text-slate-300 leading-relaxed mt-2 relative z-10">
-                แฟ้มสะสมผลงาน (Portfolio) ในรูปแบบเว็บไซต์นี้ จัดทำขึ้นเพื่อนำเสนอประวัติ ทักษะ ความสามารถ และผลงานที่ผมภาคภูมิใจตลอดการศึกษาระดับมัธยมศึกษาตอนปลาย 
-                โดยสะท้อนถึงความมุ่งมั่นและความตั้งใจในการพัฒนาตนเอง เพื่อเป้าหมายในการเข้าศึกษาต่อระดับอุดมศึกษาใน 
-                <span class="text-yellow-400 font-medium">คณะพาณิชยศาสตร์และการบัญชี มหาวิทยาลัยธรรมศาสตร์</span><br><br>
-                ผมหวังเป็นอย่างยิ่งว่า Portfolio ฉบับนี้ จะทำให้คณะกรรมการและทุกท่านได้รู้จักตัวตน วิธีคิด และศักยภาพของผมมากยิ่งขึ้น ขอขอบพระคุณครับ
-            </p>
-        </div>
+        </nav>
 
-        <p class="text-xs text-slate-400 mb-4 leading-relaxed max-w-xs mx-auto">
-            เลือกหัวข้อที่ต้องการเข้าชมด้านล่างได้เลยครับ <i class="fa-solid fa-hand-point-down text-cyan-400 animate-bounce"></i>
-        </p>
+        <!-- Main Content -->
+        <main class="max-w-4xl mx-auto px-6 py-8">
+            <!-- Hero Banner -->
+            <section class="bg-gradient-to-br from-slate-900/90 via-slate-900/70 to-slate-950/90 border border-slate-800 rounded-3xl p-8 text-center relative overflow-hidden backdrop-blur-md shadow-2xl mb-8">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -left-10 -top-10 w-40 h-40 bg-purple-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-        <!-- Navigation Menu Buttons -->
-        <div class="space-y-3 text-left">
-            <a href="details.html" class="flex items-center justify-between p-3.5 bg-slate-950/80 hover:bg-slate-800/90 border border-slate-800 hover:border-cyan-500/50 rounded-2xl transition group shadow-md">
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-cyan-950 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-sm group-hover:scale-110 transition">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
+                <span class="px-3 py-1 bg-cyan-950/80 border border-cyan-500/30 text-cyan-400 text-xs font-mono rounded-full inline-block mb-4">
+                    <i class="fa-solid fa-sparkles mr-1"></i> ONLINE PORTFOLIO
+                </span>
+
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
+                    ยินดีต้อนรับสู่แฟ้มสะสมผลงาน
+                </h1>
+                <p class="text-xl font-semibold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
+                    นายวสุพล สมาธิ
+                </p>
+                <p class="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto leading-relaxed">
+                    รวบรวมประวัติส่วนตัว ประวัติการศึกษา กิจกรรม และเกียรติบัตรผลงานในการพัฒนาตนเอง
+                </p>
+            </section>
+
+            <!-- Menu Cards Dashboard -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                
+                <!-- Card 1: คำนำ -->
+                <a href="preface.html" class="group bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-rose-500/50 p-5 rounded-2xl transition duration-300 shadow-lg flex flex-col justify-between">
                     <div>
-                        <h2 class="text-xs font-bold text-white">ประวัติส่วนตัว</h2>
-                        <p class="text-[10px] text-slate-400">Personal Profile & Skills</p>
+                        <div class="w-10 h-10 rounded-xl bg-rose-950 text-rose-400 border border-rose-500/30 flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <h2 class="text-base font-bold text-white group-hover:text-rose-400 transition">คำนำ (Preface)</h2>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">วัตถุประสงค์และจุดมุ่งหมายในการจัดทำแฟ้มสะสมผลงาน</p>
                     </div>
-                </div>
-                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-cyan-400 group-hover:translate-x-1 transition"></i>
-            </a>
+                    <div class="mt-4 text-xs font-semibold text-rose-400 flex items-center gap-1 group-hover:translate-x-1 transition">
+                        เข้าชม <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </div>
+                </a>
 
-            <a href="education.html" class="flex items-center justify-between p-3.5 bg-slate-950/80 hover:bg-slate-800/90 border border-slate-800 hover:border-purple-500/50 rounded-2xl transition group shadow-md">
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-purple-950 text-purple-400 border border-purple-500/30 flex items-center justify-center text-sm group-hover:scale-110 transition">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
+                <!-- Card 2: ประวัติส่วนตัว -->
+                <a href="details.html" class="group bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 p-5 rounded-2xl transition duration-300 shadow-lg flex flex-col justify-between">
                     <div>
-                        <h2 class="text-xs font-bold text-white">ประวัติการศึกษา</h2>
-                        <p class="text-[10px] text-slate-400">Education Timeline</p>
+                        <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <h2 class="text-base font-bold text-white group-hover:text-cyan-400 transition">ประวัติส่วนตัว</h2>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">ข้อมูลส่วนตัว ความสามารถพิเศษ และช่องทางการติดต่อ</p>
                     </div>
-                </div>
-                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-purple-400 group-hover:translate-x-1 transition"></i>
-            </a>
+                    <div class="mt-4 text-xs font-semibold text-cyan-400 flex items-center gap-1 group-hover:translate-x-1 transition">
+                        เข้าชม <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </div>
+                </a>
 
-            <a href="certificates.html" class="flex items-center justify-between p-3.5 bg-slate-950/80 hover:bg-slate-800/90 border border-slate-800 hover:border-emerald-500/50 rounded-2xl transition group shadow-md">
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-sm group-hover:scale-110 transition">
-                        <i class="fa-solid fa-award"></i>
-                    </div>
+                <!-- Card 3: การศึกษา -->
+                <a href="education.html" class="group bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 p-5 rounded-2xl transition duration-300 shadow-lg flex flex-col justify-between">
                     <div>
-                        <h2 class="text-xs font-bold text-white">ผลงาน & เกียรติบัตร</h2>
-                        <p class="text-[10px] text-slate-400">Certificates & Activities</p>
+                        <div class="w-10 h-10 rounded-xl bg-purple-950 text-purple-400 border border-purple-500/30 flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h2 class="text-base font-bold text-white group-hover:text-purple-400 transition">ประวัติการศึกษา</h2>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">ลำดับประวัติการศึกษาในระดับชั้นต่างๆ</p>
                     </div>
-                </div>
-                <i class="fa-solid fa-chevron-right text-xs text-slate-500 group-hover:text-emerald-400 group-hover:translate-x-1 transition"></i>
-            </a>
-        </div>
+                    <div class="mt-4 text-xs font-semibold text-purple-400 flex items-center gap-1 group-hover:translate-x-1 transition">
+                        เข้าชม <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </div>
+                </a>
 
-        <!-- Social Icons Footer -->
-        <div class="mt-6 pt-5 border-t border-slate-800/80 flex justify-center gap-4 text-slate-400 text-sm">
-            <a href="tel:0919347835" class="hover:text-cyan-400 transition"><i class="fa-solid fa-phone"></i></a>
-            <a href="mailto:wasuponicesamati@gmail.com" class="hover:text-cyan-400 transition"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://instagram.com/icw3s" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400 transition"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-    </main>
+                <!-- Card 4: ผลงาน -->
+                <a href="certificates.html" class="group bg-slate-900/60 hover:bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 p-5 rounded-2xl transition duration-300 shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-lg mb-4 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h2 class="text-base font-bold text-white group-hover:text-emerald-400 transition">ผลงาน & เกียรติบัตร</h2>
+                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">ผลงานการทำงาน การเข้าร่วมกิจกรรม และการฝึกอบรม</p>
+                    </div>
+                    <div class="mt-4 text-xs font-semibold text-emerald-400 flex items-center gap-1 group-hover:translate-x-1 transition">
+                        เข้าชม <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </div>
+                </a>
 
-    <!-- Scripts Section -->
+            </div>
+        </main>
+    </div>
+
     <script>
-        // 1. Preloader Handler
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             setTimeout(() => {
                 preloader.classList.add('opacity-0', 'pointer-events-none');
                 setTimeout(() => preloader.style.display = 'none', 500);
-            }, 1200);
+            }, 800);
         });
 
-        // 2. Shooting Stars Canvas Animation Engine
         const canvas = document.getElementById('shootingStarsCanvas');
         const ctx = canvas.getContext('2d');
-
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
 
@@ -160,44 +175,20 @@
             height = canvas.height = window.innerHeight;
         });
 
-        // Background Static Twinkling Stars
         const stars = [];
-        const starCount = 120;
-        for (let i = 0; i < starCount; i++) {
-            stars.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                size: Math.random() * 1.5 + 0.3,
-                alpha: Math.random(),
-                speed: Math.random() * 0.015 + 0.005
-            });
+        for (let i = 0; i < 120; i++) {
+            stars.push({ x: Math.random() * width, y: Math.random() * height, size: Math.random() * 1.5 + 0.3, alpha: Math.random(), speed: Math.random() * 0.015 + 0.005 });
         }
 
-        // Shooting Stars Array
         const shootingStars = [];
-
         function createShootingStar() {
-            shootingStars.push({
-                x: Math.random() * width * 1.2 - width * 0.2,
-                y: Math.random() * height * 0.4,
-                length: Math.random() * 90 + 60,
-                speed: Math.random() * 9 + 6,
-                size: Math.random() * 1.5 + 1,
-                angle: 45 * Math.PI / 180,
-                alpha: 1
-            });
+            shootingStars.push({ x: Math.random() * width * 1.2 - width * 0.2, y: Math.random() * height * 0.4, length: Math.random() * 90 + 60, speed: Math.random() * 9 + 6, size: Math.random() * 1.5 + 1, angle: 45 * Math.PI / 180, alpha: 1 });
         }
 
-        setInterval(() => {
-            if (shootingStars.length < 3 && Math.random() < 0.75) {
-                createShootingStar();
-            }
-        }, 1200);
+        setInterval(() => { if (shootingStars.length < 3 && Math.random() < 0.75) createShootingStar(); }, 1200);
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
-
-            // Draw Background Twinkling Stars
             stars.forEach(star => {
                 star.alpha += star.speed;
                 if (star.alpha > 1 || star.alpha < 0) star.speed = -star.speed;
@@ -207,18 +198,14 @@
                 ctx.fill();
             });
 
-            // Draw & Update Shooting Stars
             for (let i = shootingStars.length - 1; i >= 0; i--) {
                 const star = shootingStars[i];
-                
                 const tailX = star.x - Math.cos(star.angle) * star.length;
                 const tailY = star.y - Math.sin(star.angle) * star.length;
-
                 const gradient = ctx.createLinearGradient(star.x, star.y, tailX, tailY);
-                gradient.addColorStop(0, `rgba(56, 189, 248, ${star.alpha})`); // Cyan
-                gradient.addColorStop(0.4, `rgba(168, 85, 247, ${star.alpha * 0.6})`); // Purple
+                gradient.addColorStop(0, `rgba(56, 189, 248, ${star.alpha})`);
+                gradient.addColorStop(0.4, `rgba(168, 85, 247, ${star.alpha * 0.6})`);
                 gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
                 ctx.strokeStyle = gradient;
                 ctx.lineWidth = star.size;
                 ctx.lineCap = 'round';
@@ -226,19 +213,13 @@
                 ctx.moveTo(star.x, star.y);
                 ctx.lineTo(tailX, tailY);
                 ctx.stroke();
-
                 star.x += Math.cos(star.angle) * star.speed;
                 star.y += Math.sin(star.angle) * star.speed;
                 star.alpha -= 0.008;
-
-                if (star.alpha <= 0 || star.x > width + 100 || star.y > height + 100) {
-                    shootingStars.splice(i, 1);
-                }
+                if (star.alpha <= 0 || star.x > width + 100 || star.y > height + 100) shootingStars.splice(i, 1);
             }
-
             requestAnimationFrame(animate);
         }
-
         animate();
     </script>
 </body>
