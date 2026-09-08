@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Kanit', sans-serif; }
-
         @keyframes rocketFly {
             0%, 100% { transform: translateY(0px) rotate(-45deg); }
             50% { transform: translateY(-15px) rotate(-45deg); }
@@ -20,212 +19,133 @@
         }
         .animate-rocket { animation: rocketFly 1.2s ease-in-out infinite; }
         .animate-flame { animation: flamePulse 0.4s ease-in-out infinite; }
-
         @keyframes pageEnter {
-            from {
-                opacity: 0;
-                transform: translateY(25px) scale(0.98);
-                filter: blur(6px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
+            from { opacity: 0; transform: translateY(25px) scale(0.98); filter: blur(6px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
         }
-        .page-enter {
-            animation: pageEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        .page-enter { animation: pageEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden">
 
-    <!-- Canvas พื้นหลังดาวตก (Shooting Stars Canvas Engine) -->
-    <canvas id="shootingStarsCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
-
-    <!-- Preloader จรวด -->
+    <!-- Preloader -->
     <div id="preloader" class="fixed inset-0 z-[9999] bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-500">
         <div class="relative flex flex-col items-center justify-center">
             <div class="animate-rocket text-5xl text-cyan-400 drop-shadow-[0_0_15px_rgba(34,211,238,0.6)]">
                 <i class="fa-solid fa-rocket"></i>
             </div>
-            <div class="animate-flame w-4 h-6 bg-gradient-to-b from-orange-500 to-yellow-300 rounded-full blur-sm -mt-1 transform rotate-180 shadow-[0_0_12px_#f97316]"></div>
+            <div class="animate-flame w-4 h-6 bg-gradient-to-b from-cyan-500 to-blue-400 rounded-full blur-sm -mt-1 transform rotate-180 shadow-[0_0_12px_#38bdf8]"></div>
         </div>
         <p class="text-xs font-mono text-cyan-400 tracking-[0.3em] mt-6 animate-pulse">LOADING PROFILE...</p>
     </div>
 
-    <!-- Navigation Bar -->
-    <nav class="sticky top-4 z-50 max-w-4xl mx-auto px-4 my-4 page-enter">
-        <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-2 rounded-2xl shadow-xl flex justify-between items-center">
-            <a href="index.html" class="px-3 py-2 text-xs font-semibold text-slate-400 hover:text-white transition flex items-center gap-1">
-                <i class="fa-solid fa-arrow-left"></i> <span class="hidden sm:inline">หน้าแรก</span>
-            </a>
-            
-            <span class="font-bold text-sm bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent px-2">วสุพล สมาธิ</span>
+    <canvas id="shootingStarsCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
-            <div class="flex gap-1 md:gap-2">
-                <a href="details.html" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-cyan-500/20 text-cyan-400 border border-cyan-500/50">
-                    <i class="fa-solid fa-user text-cyan-400 mr-1"></i> ประวัติ
+    <div class="relative z-10 page-enter">
+        <nav class="sticky top-4 z-50 max-w-4xl mx-auto px-4 my-4">
+            <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-2 rounded-2xl shadow-xl flex justify-between items-center gap-2">
+                <a href="index.html" class="px-3 py-1.5 text-xs font-semibold text-slate-400 hover:text-white transition flex items-center gap-1 shrink-0">
+                    <i class="fa-solid fa-arrow-left"></i> <span class="hidden sm:inline">หน้าแรก</span>
                 </a>
-                <a href="education.html" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-400 hover:text-purple-400 border border-slate-700 hover:border-purple-500/30 transition">
-                    <i class="fa-solid fa-graduation-cap text-purple-400 mr-1"></i> การศึกษา
-                </a>
-                <a href="certificates.html" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-400 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500/30 transition">
-                    <i class="fa-solid fa-award text-emerald-400 mr-1"></i> ผลงาน
-                </a>
-            </div>
-        </div>
-    </nav>
+                
+                <span class="font-bold text-xs sm:text-sm bg-gradient-to-r from-cyan-400 via-purple-400 to-emerald-400 bg-clip-text text-transparent px-1 hidden sm:inline truncate">
+                    วสุพล สมาธิ
+                </span>
 
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-6 py-8 page-enter relative z-10" style="animation-delay: 0.1s;">
-        <section class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden backdrop-blur-sm shadow-xl">
-            <div class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4">
-                <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-lg">
-                    <i class="fa-solid fa-user-astronaut"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold text-white">ประวัติส่วนตัว (Personal Profile)</h2>
-                    <p class="text-xs text-slate-400">ข้อมูลส่วนตัว ช่องทางการติดต่อ และทักษะความสามารถ</p>
+                <div class="flex gap-1 sm:gap-1.5 overflow-x-auto py-0.5">
+                    <a href="preface.html" class="px-2.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-medium bg-slate-800 text-slate-400 hover:text-rose-400 border border-slate-700 hover:border-rose-500/30 transition shrink-0">
+                        <i class="fa-solid fa-book-open text-rose-400 mr-1"></i> คำนำ
+                    </a>
+                    <a href="details.html" class="px-2.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-semibold bg-cyan-500/20 text-cyan-400 border border-cyan-500/50 shrink-0">
+                        <i class="fa-solid fa-user text-cyan-400 mr-1"></i> ประวัติ
+                    </a>
+                    <a href="education.html" class="px-2.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-medium bg-slate-800 text-slate-400 hover:text-purple-400 border border-slate-700 hover:border-purple-500/30 transition shrink-0">
+                        <i class="fa-solid fa-graduation-cap text-purple-400 mr-1"></i> การศึกษา
+                    </a>
+                    <a href="certificates.html" class="px-2.5 py-1.5 rounded-xl text-[11px] sm:text-xs font-medium bg-slate-800 text-slate-400 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500/30 transition shrink-0">
+                        <i class="fa-solid fa-award text-emerald-400 mr-1"></i> ผลงาน
+                    </a>
                 </div>
             </div>
+        </nav>
 
-            <div class="flex flex-col sm:flex-row items-center gap-6 mb-8 bg-slate-950/60 p-5 rounded-2xl border border-slate-800">
-                <div class="w-32 h-40 rounded-xl overflow-hidden border-2 border-cyan-500/40 shrink-0 shadow-lg shadow-cyan-500/10">
-                    <img src="file_00000000aeb0820b96665629df534e91.jpg" alt="นายวสุพล สมาธิ" class="w-full h-full object-cover">
-                </div>
-                <div class="space-y-2 text-center sm:text-left w-full">
-                    <h3 class="text-2xl font-bold text-white">นายวสุพล สมาธิ (ไอซ์)</h3>
-                    <p class="text-sm text-cyan-400 font-medium">นักเรียนโครงการห้องเรียนพิเศษ (Gifted Program)</p>
-                    <div class="p-3 bg-cyan-950/30 border-l-4 border-cyan-400 rounded-r-xl mt-3">
-                        <span class="text-[10px] font-mono text-cyan-400 block"><i class="fa-solid fa-quote-left mr-1"></i> MOTTO</span>
-                        <p class="text-sm font-semibold text-slate-200 italic">"Grow through what you go through"</p>
+        <main class="max-w-4xl mx-auto px-6 py-8">
+            <section class="bg-slate-900/70 backdrop-blur-sm border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden shadow-2xl">
+                
+                <div class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-950 text-cyan-400 border border-cyan-500/30 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">ประวัติส่วนตัว (Personal Details)</h2>
+                        <p class="text-xs text-slate-400">ข้อมูลพื้นฐานและความสนใจส่วนตัว</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-slate-300">
-                <div class="space-y-3 text-sm bg-slate-950/50 p-5 rounded-2xl border border-slate-800">
-                    <h3 class="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-2"><i class="fa-solid fa-id-card mr-1"></i> General Info</h3>
-                    <p><strong class="text-slate-100">วันเกิด:</strong> 11 พฤศจิกายน 2551 (อายุ 17 ปี)</p>
-                    <p><strong class="text-slate-100">กรุ๊ปเลือด:</strong> A</p>
-                    <p><strong class="text-slate-100">ระดับชั้น:</strong> มัธยมศึกษาปีที่ 6/2</p>
-                    <p><strong class="text-slate-100">ที่อยู่ปัจจุบัน:</strong> 513/70 หมู่ที่ 1 ต.คลองกิ่ว อ.บ้านบึง จ.ชลบุรี</p>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="space-y-3 text-sm bg-slate-950/50 p-5 rounded-2xl border border-slate-800">
-                        <h3 class="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-2"><i class="fa-solid fa-address-book mr-1"></i> Contact</h3>
-                        <p class="flex items-center gap-2">
-                            <i class="fa-solid fa-phone text-cyan-400 w-4"></i>
-                            <span>091-934-7835</span>
-                        </p>
-                        <p class="flex items-center gap-2">
-                            <i class="fa-solid fa-envelope text-cyan-400 w-4"></i>
-                            <span class="break-all">wasuponicesamati@gmail.com</span>
-                        </p>
-                        <p class="flex items-center gap-2">
-                            <i class="fa-brands fa-instagram text-pink-400 w-4"></i>
-                            <a href="https://instagram.com/icw3s" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400 transition">icw3s</a>
-                        </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="md:col-span-1 flex flex-col items-center justify-center p-6 bg-slate-950/80 rounded-2xl border border-slate-800 text-center">
+                        <div class="w-28 h-28 rounded-full bg-slate-900 border-2 border-cyan-500/50 p-1 mb-4 flex items-center justify-center text-5xl text-cyan-400 shadow-lg shadow-cyan-500/10">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white">วสุพล สมาธิ</h3>
+                        <p class="text-xs text-cyan-400 font-mono mt-0.5">Vasupol Samathi</p>
+                        <span class="mt-3 px-3 py-1 bg-cyan-950 border border-cyan-500/30 text-cyan-400 text-xs rounded-full">
+                            นักเรียน ม.ปลาย
+                        </span>
                     </div>
 
-                    <div class="bg-slate-950/50 p-5 rounded-2xl border border-slate-800">
-                        <h3 class="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-2"><i class="fa-solid fa-gamepad mr-1"></i> Hobbies</h3>
-                        <div class="flex flex-wrap gap-2 mt-2">
-                            <span class="px-3 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700 flex items-center gap-1.5">
-                                <i class="fa-solid fa-futbol text-cyan-400"></i> เล่นฟุตบอล
-                            </span>
-                            <span class="px-3 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700 flex items-center gap-1.5">
-                                <i class="fa-solid fa-basketball text-orange-400"></i> เล่นบาสเกตบอล
-                            </span>
-                            <span class="px-3 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700 flex items-center gap-1.5">
-                                <i class="fa-solid fa-dumbbell text-emerald-400"></i> เล่นเวท / ออกกำลังกาย
-                            </span>
+                    <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                            <p class="text-xs text-slate-500">ชื่อ-นามสกุล</p>
+                            <p class="text-sm font-semibold text-slate-200 mt-1">นายวสุพล สมาธิ</p>
+                        </div>
+                        <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                            <p class="text-xs text-slate-500">ชื่อเล่น</p>
+                            <p class="text-sm font-semibold text-slate-200 mt-1">-</p>
+                        </div>
+                        <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                            <p class="text-xs text-slate-500">สถานศึกษาปัจจุบัน</p>
+                            <p class="text-sm font-semibold text-slate-200 mt-1">รร.บ้านบึง "อุตสาหกรรมนุเคราะห์"</p>
+                        </div>
+                        <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                            <p class="text-xs text-slate-500">ตำแหน่ง / กิจกรรม</p>
+                            <p class="text-sm font-semibold text-slate-200 mt-1">คณะกรรมการสภานักเรียน</p>
+                        </div>
+                        <div class="sm:col-span-2 bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                            <p class="text-xs text-slate-500">ทักษะและความสนใจ</p>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <span class="px-2.5 py-1 bg-slate-900 border border-slate-700 text-xs text-slate-300 rounded-lg"><i class="fa-solid fa-users text-cyan-400 mr-1"></i> ภาวะผู้นำ</span>
+                                <span class="px-2.5 py-1 bg-slate-900 border border-slate-700 text-xs text-slate-300 rounded-lg"><i class="fa-solid fa-heart-pulse text-emerald-400 mr-1"></i> การปฐมพยาบาล CPR</span>
+                                <span class="px-2.5 py-1 bg-slate-900 border border-slate-700 text-xs text-slate-300 rounded-lg"><i class="fa-solid fa-handshake text-purple-400 mr-1"></i> กิจกรรมสภานักเรียน</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="mt-6 pt-6 border-t border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
-                    <span class="text-xs font-mono text-cyan-400 font-semibold block mb-2"><i class="fa-solid fa-code mr-1"></i> HARD SKILLS</span>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 text-xs rounded-lg">
-                            <i class="fa-solid fa-language mr-1"></i> การใช้ภาษาต่างประเทศ
-                        </span>
-                        <span class="px-3 py-1 bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 text-xs rounded-lg">
-                            <i class="fa-solid fa-laptop-code mr-1"></i> การพัฒนาเว็บไซต์เบื้องต้น
-                        </span>
-                        <span class="px-3 py-1 bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 text-xs rounded-lg">
-                            <i class="fa-solid fa-calculator mr-1"></i> การวิเคราะห์ข้อมูลและคำนวณ
-                        </span>
-                    </div>
+                <div class="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <a href="preface.html" class="w-full sm:w-auto px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition border border-slate-700">
+                        <i class="fa-solid fa-arrow-left"></i> ย้อนกลับไป หน้าคำนำ
+                    </a>
+                    <a href="education.html" class="w-full sm:w-auto px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold rounded-xl flex items-center justify-center gap-2 transition shadow-lg shadow-purple-500/20">
+                        ไปหน้า ประวัติการศึกษา <i class="fa-solid fa-arrow-right"></i>
+                    </a>
                 </div>
 
-                <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800">
-                    <span class="text-xs font-mono text-purple-400 font-semibold block mb-2"><i class="fa-solid fa-brain mr-1"></i> SOFT SKILLS</span>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-purple-950/60 border border-purple-500/40 text-purple-300 text-xs rounded-lg">
-                            <i class="fa-solid fa-users mr-1"></i> การทำงานเป็นทีม (Teamwork)
-                        </span>
-                        <span class="px-3 py-1 bg-purple-950/60 border border-purple-500/40 text-purple-300 text-xs rounded-lg">
-                            <i class="fa-solid fa-comments mr-1"></i> การสื่อสารและการนำเสนอ
-                        </span>
-                        <span class="px-3 py-1 bg-purple-950/60 border border-purple-500/40 text-purple-300 text-xs rounded-lg">
-                            <i class="fa-solid fa-lightbulb mr-1"></i> การแก้ปัญหาและการคิดวิเคราะห์
-                        </span>
-                    </div>
-                </div>
-            </div>
+            </section>
+        </main>
+    </div>
 
-            <!-- Educational Goals Section -->
-            <div class="mt-6 pt-6 border-t border-slate-800">
-                <h3 class="text-xs font-mono text-yellow-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <i class="fa-solid fa-bullseye"></i> Educational Goals (เป้าหมายการศึกษา)
-                </h3>
-                <div class="bg-gradient-to-r from-red-950/40 to-yellow-950/20 p-5 rounded-2xl border border-red-900/50 flex flex-col sm:flex-row items-center gap-5 hover:border-yellow-500/40 transition duration-300 shadow-[0_0_15px_rgba(239,68,68,0.05)]">
-                    <div class="w-16 h-16 rounded-full bg-slate-950 border-2 border-yellow-500/50 flex items-center justify-center shrink-0 shadow-[0_0_10px_rgba(234,179,8,0.2)]">
-                        <i class="fa-solid fa-university text-2xl text-yellow-500"></i>
-                    </div>
-                    <div class="text-center sm:text-left w-full">
-                        <h4 class="text-lg font-bold text-white">มหาวิทยาลัยธรรมศาสตร์ <span class="text-xs font-normal text-slate-400 ml-1">(Thammasat University)</span></h4>
-                        <p class="text-sm text-yellow-400 font-medium mt-1">คณะพาณิชยศาสตร์และการบัญชี (บริหารธุรกิจ)</p>
-                        <div class="flex flex-wrap gap-2 mt-3 justify-center sm:justify-start">
-                            <span class="px-3 py-1 bg-yellow-950/40 border border-yellow-500/30 text-yellow-200 text-[11px] rounded-lg flex items-center gap-1.5">
-                                <i class="fa-solid fa-briefcase text-yellow-400"></i> สาขาบริหารธุรกิจ
-                            </span>
-                            <span class="px-3 py-1 bg-red-950/40 border border-red-500/30 text-red-200 text-[11px] rounded-lg flex items-center gap-1.5">
-                                <i class="fa-solid fa-chart-pie text-red-400"></i> สาขาการตลาด
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="mt-8 pt-6 border-t border-slate-800 flex justify-end">
-                <a href="education.html" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold rounded-xl flex items-center gap-2 transition duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/20">
-                    ไปหน้า ประวัติการศึกษา <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-        </section>
-    </main>
-
-    <!-- Scripts Section -->
     <script>
-        // 1. Preloader Handler
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             setTimeout(() => {
                 preloader.classList.add('opacity-0', 'pointer-events-none');
                 setTimeout(() => preloader.style.display = 'none', 500);
-            }, 1500);
+            }, 800);
         });
 
-        // 2. Shooting Stars Canvas Animation Engine
         const canvas = document.getElementById('shootingStarsCanvas');
         const ctx = canvas.getContext('2d');
-
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
 
@@ -234,44 +154,20 @@
             height = canvas.height = window.innerHeight;
         });
 
-        // Background Static Twinkling Stars
         const stars = [];
-        const starCount = 120;
-        for (let i = 0; i < starCount; i++) {
-            stars.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                size: Math.random() * 1.5 + 0.3,
-                alpha: Math.random(),
-                speed: Math.random() * 0.015 + 0.005
-            });
+        for (let i = 0; i < 120; i++) {
+            stars.push({ x: Math.random() * width, y: Math.random() * height, size: Math.random() * 1.5 + 0.3, alpha: Math.random(), speed: Math.random() * 0.015 + 0.005 });
         }
 
-        // Shooting Stars Array
         const shootingStars = [];
-
         function createShootingStar() {
-            shootingStars.push({
-                x: Math.random() * width * 1.2 - width * 0.2,
-                y: Math.random() * height * 0.4,
-                length: Math.random() * 90 + 60,
-                speed: Math.random() * 9 + 6,
-                size: Math.random() * 1.5 + 1,
-                angle: 45 * Math.PI / 180,
-                alpha: 1
-            });
+            shootingStars.push({ x: Math.random() * width * 1.2 - width * 0.2, y: Math.random() * height * 0.4, length: Math.random() * 90 + 60, speed: Math.random() * 9 + 6, size: Math.random() * 1.5 + 1, angle: 45 * Math.PI / 180, alpha: 1 });
         }
 
-        setInterval(() => {
-            if (shootingStars.length < 3 && Math.random() < 0.75) {
-                createShootingStar();
-            }
-        }, 1200);
+        setInterval(() => { if (shootingStars.length < 3 && Math.random() < 0.75) createShootingStar(); }, 1200);
 
         function animate() {
             ctx.clearRect(0, 0, width, height);
-
-            // Draw Background Twinkling Stars
             stars.forEach(star => {
                 star.alpha += star.speed;
                 if (star.alpha > 1 || star.alpha < 0) star.speed = -star.speed;
@@ -281,18 +177,14 @@
                 ctx.fill();
             });
 
-            // Draw & Update Shooting Stars
             for (let i = shootingStars.length - 1; i >= 0; i--) {
                 const star = shootingStars[i];
-                
                 const tailX = star.x - Math.cos(star.angle) * star.length;
                 const tailY = star.y - Math.sin(star.angle) * star.length;
-
                 const gradient = ctx.createLinearGradient(star.x, star.y, tailX, tailY);
-                gradient.addColorStop(0, `rgba(56, 189, 248, ${star.alpha})`); // Cyan
-                gradient.addColorStop(0.4, `rgba(168, 85, 247, ${star.alpha * 0.6})`); // Purple
+                gradient.addColorStop(0, `rgba(56, 189, 248, ${star.alpha})`);
+                gradient.addColorStop(0.4, `rgba(168, 85, 247, ${star.alpha * 0.6})`);
                 gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
                 ctx.strokeStyle = gradient;
                 ctx.lineWidth = star.size;
                 ctx.lineCap = 'round';
@@ -300,19 +192,13 @@
                 ctx.moveTo(star.x, star.y);
                 ctx.lineTo(tailX, tailY);
                 ctx.stroke();
-
                 star.x += Math.cos(star.angle) * star.speed;
                 star.y += Math.sin(star.angle) * star.speed;
                 star.alpha -= 0.008;
-
-                if (star.alpha <= 0 || star.x > width + 100 || star.y > height + 100) {
-                    shootingStars.splice(i, 1);
-                }
+                if (star.alpha <= 0 || star.x > width + 100 || star.y > height + 100) shootingStars.splice(i, 1);
             }
-
             requestAnimationFrame(animate);
         }
-
         animate();
     </script>
 </body>
