@@ -7,18 +7,77 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style> body { font-family: 'Kanit', sans-serif; } </style>
-</head>
-<body class="bg-slate-950 text-slate-100 min-h-screen">
+    <style>
+        body { font-family: 'Kanit', sans-serif; }
 
-    <!-- Sticky Navigation Menu -->
-    <nav class="sticky top-4 z-50 max-w-4xl mx-auto px-4 my-4">
+        @keyframes rocketFly {
+            0%, 100% { transform: translateY(0px) rotate(-45deg); }
+            50% { transform: translateY(-15px) rotate(-45deg); }
+        }
+        @keyframes flamePulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+        .animate-rocket { animation: rocketFly 1.2s ease-in-out infinite; }
+        .animate-flame { animation: flamePulse 0.4s ease-in-out infinite; }
+
+        @keyframes pageEnter {
+            from {
+                opacity: 0;
+                transform: translateY(25px) scale(0.98);
+                filter: blur(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+        .page-enter {
+            animation: pageEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .shooting-star {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(34, 211, 238, 1), rgba(255, 255, 255, 0));
+            border-radius: 999px;
+            filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.8));
+            animation: shoot linear forwards;
+        }
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0) rotate(-35deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-700px) translateY(700px) rotate(-35deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden">
+
+    <div id="star-field" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+    <div id="preloader" class="fixed inset-0 z-[9999] bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-500">
+        <div class="relative flex flex-col items-center justify-center">
+            <div class="animate-rocket text-5xl text-emerald-400 drop-shadow-[0_0_15px_rgba(52,211,153,0.6)]">
+                <i class="fa-solid fa-rocket"></i>
+            </div>
+            <div class="animate-flame w-4 h-6 bg-gradient-to-b from-orange-500 to-yellow-300 rounded-full blur-sm -mt-1 transform rotate-180 shadow-[0_0_12px_#f97316]"></div>
+        </div>
+        <p class="text-xs font-mono text-emerald-400 tracking-[0.3em] mt-6 animate-pulse">LOADING CERTIFICATES...</p>
+    </div>
+
+    <nav class="sticky top-4 z-50 max-w-4xl mx-auto px-4 my-4 page-enter">
         <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-2 rounded-2xl shadow-xl flex justify-between items-center">
             <a href="index.html" class="px-3 py-2 text-xs font-semibold text-slate-400 hover:text-white transition flex items-center gap-1">
                 <i class="fa-solid fa-arrow-left"></i> <span class="hidden sm:inline">หน้าแรก</span>
             </a>
             
-            <span class="font-bold text-sm bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent px-2">วสุพล สมาธิ</span>
+            <span class="font-bold text-sm bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent px-2">วสุพล สมาธิ</span>
 
             <div class="flex gap-1 md:gap-2">
                 <a href="details.html" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-400 hover:text-cyan-400 border border-slate-700 hover:border-cyan-500/30 transition">
@@ -34,126 +93,98 @@
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto px-6 py-8">
-        <section class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden">
-            <div class="flex items-center gap-3 mb-6 border-b border-slate-800 pb-4">
+    <main class="max-w-4xl mx-auto px-6 py-8 page-enter relative z-10" style="animation-delay: 0.1s;">
+        <section class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden backdrop-blur-sm shadow-xl">
+            <div class="flex items-center gap-3 mb-8 border-b border-slate-800 pb-4">
                 <div class="w-10 h-10 rounded-xl bg-emerald-950 text-emerald-400 border border-emerald-500/30 flex items-center justify-center text-lg">
                     <i class="fa-solid fa-award"></i>
                 </div>
                 <div>
-                    <h2 class="text-2xl font-bold text-white">เกียรติบัตร & ผลงาน (Certificates)</h2>
-                    <p class="text-xs text-slate-400">ผลงานการทำงาน การแข่งขัน และการฝึกอบรมพัฒนาตนเอง</p>
+                    <h2 class="text-2xl font-bold text-white">ผลงานและเกียรติบัตร (Certificates)</h2>
+                    <p class="text-xs text-slate-400">รางวัล ความสำเร็จ และการเข้าร่วมกิจกรรมต่างๆ</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-
-                <!-- cert1 -->
-                <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden hover:border-cyan-500/50 transition group flex flex-col justify-between">
-                    <div class="p-3">
-                        <div class="relative h-44 bg-slate-900 rounded-xl overflow-hidden mb-3 border border-slate-800">
-                            <img src="IMG_20260907_225254.jpg" alt="คณะกรรมการสภานักเรียน" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        </div>
-                        <span class="text-[10px] font-mono text-cyan-400 bg-cyan-950 px-2.5 py-0.5 rounded-full border border-cyan-500/30">
-                            <i class="fa-solid fa-users-gear mr-1"></i> ภาวะผู้นำ / สภานักเรียน
-                        </span>
-                        <h3 class="font-bold text-white text-sm mt-2">คณะกรรมการสภานักเรียน</h3>
-                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
-                            ปฏิบัติหน้าที่คณะกรรมการสภานักเรียน ประจำปีการศึกษา 2567 ด้วยความวิริยะ อุตสาหะ และความสามารถ
-                        </p>
+            <!-- Certificates Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Card 1 -->
+                <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl space-y-3 hover:border-emerald-500/40 transition duration-300">
+                    <div class="w-full h-36 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-center text-slate-700 overflow-hidden">
+                        <i class="fa-solid fa-certificate text-4xl text-emerald-500/40"></i>
                     </div>
-                    <div class="px-3 pb-3 pt-2 text-[11px] font-mono text-slate-500 border-t border-slate-900/80">
-                        โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"
-                    </div>
+                    <span class="px-2 py-0.5 bg-emerald-950/80 text-emerald-400 border border-emerald-500/30 text-[10px] rounded-md font-mono">วิชาการ / กิจกรรม</span>
+                    <h3 class="font-bold text-sm text-slate-100">การแข่งขันทักษะทางวิชาการ / โครงงาน</h3>
+                    <p class="text-xs text-slate-400">ได้รับเกียรติบัตรเข้าร่วมและนำเสนอผลงานโครงการห้องเรียนพิเศษ (Gifted Program)</p>
                 </div>
 
-                <!-- cert2 -->
-                <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden hover:border-emerald-500/50 transition group flex flex-col justify-between">
-                    <div class="p-3">
-                        <div class="relative h-44 bg-slate-900 rounded-xl overflow-hidden mb-3 border border-slate-800">
-                            <img src="IMG_20260907_220129_1.jpg" alt="การปฐมพยาบาลฉุกเฉินและการกู้ชีพขั้นพื้นฐาน" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        </div>
-                        <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                            <i class="fa-solid fa-heart-pulse mr-1"></i> อบรมเชิงปฏิบัติการ
-                        </span>
-                        <h3 class="font-bold text-white text-sm mt-2">การปฐมพยาบาลฉุกเฉิน & CPR ขั้นพื้นฐาน</h3>
-                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
-                            ผ่านการอบรมเชิงปฏิบัติการ Emergency First Aid and Basic Life Support Training ประจำปีการศึกษา 2568
-                        </p>
+                <!-- Card 2 -->
+                <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl space-y-3 hover:border-emerald-500/40 transition duration-300">
+                    <div class="w-full h-36 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-center text-slate-700 overflow-hidden">
+                        <i class="fa-solid fa-laptop-code text-4xl text-cyan-500/40"></i>
                     </div>
-                    <div class="px-3 pb-3 pt-2 text-[11px] font-mono text-slate-500 border-t border-slate-900/80">
-                        โรงพยาบาลบ้านบึง ร่วมกับ รร.บ้านบึงฯ
-                    </div>
+                    <span class="px-2 py-0.5 bg-cyan-950/80 text-cyan-400 border border-cyan-500/30 text-[10px] rounded-md font-mono">เทคโนโลยี / ไอที</span>
+                    <h3 class="font-bold text-sm text-slate-100">การพัฒนาเว็บไซต์และเทคโนโลยี</h3>
+                    <p class="text-xs text-slate-400">พัฒนาและออกแบบเว็บไซต์ Personal Portfolio ด้วย HTML, Tailwind CSS และ JavaScript</p>
                 </div>
 
-                <!-- cert3 -->
-                <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden hover:border-purple-500/50 transition group flex flex-col justify-between">
-                    <div class="p-3">
-                        <div class="relative h-44 bg-slate-900 rounded-xl overflow-hidden mb-3 border border-slate-800">
-                            <img src="IMG_20260907_220143_1.jpg" alt="ประกวดคำขวัญต่อต้านการทุจริต" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        </div>
-                        <span class="text-[10px] font-mono text-purple-400 bg-purple-950 px-2.5 py-0.5 rounded-full border border-purple-500/30">
-                            <i class="fa-solid fa-trophy mr-1"></i> การแข่งขัน / วิชาการ
-                        </span>
-                        <h3 class="font-bold text-white text-sm mt-2">ประกวดคำขวัญต่อต้านการทุจริต</h3>
-                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
-                            เข้าร่วมการแข่งขันประกวดคำขวัญต่อต้านการทุจริต ระดับชั้นมัธยมศึกษาตอนปลาย
-                        </p>
+                <!-- Card 3 -->
+                <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl space-y-3 hover:border-emerald-500/40 transition duration-300">
+                    <div class="w-full h-36 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-center text-slate-700 overflow-hidden">
+                        <i class="fa-solid fa-trophy text-4xl text-amber-500/40"></i>
                     </div>
-                    <div class="px-3 pb-3 pt-2 text-[11px] font-mono text-slate-500 border-t border-slate-900/80">
-                        โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"
-                    </div>
+                    <span class="px-2 py-0.5 bg-amber-950/80 text-amber-400 border border-amber-500/30 text-[10px] rounded-md font-mono">กีฬาและนันทนาการ</span>
+                    <h3 class="font-bold text-sm text-slate-100">การแข่งขันกีฬาฟุตบอล / บาสเกตบอล</h3>
+                    <p class="text-xs text-slate-400">เข้าร่วมการแข่งขันกีฬาภายในโรงเรียนและกิจกรรมส่งเสริมสุขภาพ</p>
                 </div>
 
-                <!-- cert4 -->
-                <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden hover:border-amber-500/50 transition group flex flex-col justify-between">
-                    <div class="p-3">
-                        <div class="relative h-44 bg-slate-900 rounded-xl overflow-hidden mb-3 border border-slate-800">
-                            <img src="IMG_20260907_220155_1.jpg" alt="ดับเพลิงและอพยพหนีไฟ" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        </div>
-                        <span class="text-[10px] font-mono text-amber-400 bg-amber-950 px-2.5 py-0.5 rounded-full border border-amber-500/30">
-                            <i class="fa-solid fa-fire-extinguisher mr-1"></i> ความปลอดภัยในสถานศึกษา
-                        </span>
-                        <h3 class="font-bold text-white text-sm mt-2">ฝึกอบรมดับเพลิง & อพยพหนีไฟ</h3>
-                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
-                            ผ่านการอบรมเชิงปฏิบัติการการฝึกซ้อมแผนป้องกันและระงับอัคคีภัยในอาคารสูง ประจำปีการศึกษา 2567
-                        </p>
+                <!-- Card 4 -->
+                <div class="bg-slate-950/60 border border-slate-800 p-4 rounded-2xl space-y-3 hover:border-emerald-500/40 transition duration-300">
+                    <div class="w-full h-36 bg-slate-900 rounded-xl border border-slate-800 flex items-center justify-center text-slate-700 overflow-hidden">
+                        <i class="fa-solid fa-hands-holding-child text-4xl text-purple-500/40"></i>
                     </div>
-                    <div class="px-3 pb-3 pt-2 text-[11px] font-mono text-slate-500 border-t border-slate-900/80">
-                        เทศบาลตำบลหัวกุญแจ ร่วมกับ รร.บ้านบึงฯ
-                    </div>
+                    <span class="px-2 py-0.5 bg-purple-950/80 text-purple-400 border border-purple-500/30 text-[10px] rounded-md font-mono">จิตอาสา</span>
+                    <h3 class="font-bold text-sm text-slate-100">กิจกรรมบำเพ็ญประโยชน์และจิตอาสา</h3>
+                    <p class="text-xs text-slate-400">เข้าร่วมกิจกรรมช่วยเหลือสังคมและกิจกรรมเสริมสร้างภาวะผู้นำของโรงเรียน</p>
                 </div>
-
-                <!-- cert5 -->
-                <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden hover:border-blue-500/50 transition group flex flex-col justify-between">
-                    <div class="p-3">
-                        <div class="relative h-44 bg-slate-900 rounded-xl overflow-hidden mb-3 border border-slate-800">
-                            <img src="IMG_20260907_220208_1.jpg" alt="ค่ายคุณธรรม" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-                        </div>
-                        <span class="text-[10px] font-mono text-blue-400 bg-blue-950 px-2.5 py-0.5 rounded-full border border-blue-500/30">
-                            <i class="fa-solid fa-hands-praying mr-1"></i> ค่ายพัฒนาตนเอง
-                        </span>
-                        <h3 class="font-bold text-white text-sm mt-2">ค่ายพัฒนาคุณธรรม จริยธรรมนักเรียน</h3>
-                        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
-                            เข้าร่วมอบรมค่ายพัฒนาคุณธรรม จริยธรรมนักเรียน ประจำปีการศึกษา 2567
-                        </p>
-                    </div>
-                    <div class="px-3 pb-3 pt-2 text-[11px] font-mono text-slate-500 border-t border-slate-900/80">
-                        โรงเรียนบ้านบึง "อุตสาหกรรมนุเคราะห์"
-                    </div>
-                </div>
-
             </div>
 
-            <div class="mt-8 pt-6 border-t border-slate-800 flex justify-between">
-                <a href="education.html" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl flex items-center gap-2 transition">
-                    <i class="fa-solid fa-arrow-left"></i> ย้อนกลับ
+            <div class="mt-8 pt-6 border-t border-slate-800 flex justify-between items-center">
+                <a href="education.html" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-arrow-left"></i> ประวัติการศึกษา
                 </a>
-                <a href="index.html" class="px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold rounded-xl flex items-center gap-2 transition">
-                    กลับหน้าหลัก (Home) <i class="fa-solid fa-house"></i>
+                <a href="index.html" class="px-5 py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-semibold rounded-xl flex items-center gap-2 transition duration-300 transform hover:scale-105 shadow-lg shadow-cyan-500/20">
+                    <i class="fa-solid fa-house"></i> กลับหน้าแรก
                 </a>
             </div>
         </section>
     </main>
+
+    <script>
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => preloader.style.display = 'none', 500);
+            }, 1500);
+        });
+
+        function createShootingStar() {
+            const container = document.getElementById('star-field');
+            if (!container) return;
+            const star = document.createElement('div');
+            star.classList.add('shooting-star');
+            const startX = Math.random() * (window.innerWidth + 300);
+            const startY = Math.random() * (window.innerHeight / 2) - 100;
+            const duration = Math.random() * 1.5 + 1.2;
+            const length = Math.random() * 90 + 50;
+            star.style.left = `${startX}px`;
+            star.style.top = `${startY}px`;
+            star.style.width = `${length}px`;
+            star.style.animationDuration = `${duration}s`;
+            container.appendChild(star);
+            setTimeout(() => star.remove(), duration * 1000);
+        }
+        setInterval(createShootingStar, 800);
+    </script>
 </body>
 </html>
