@@ -9,15 +9,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style> 
         body { font-family: 'Kanit', sans-serif; } 
+        
+        /* Preloader Animations */
+        @keyframes rocketFly {
+            0%, 100% { transform: translateY(0px) rotate(-45deg); }
+            50% { transform: translateY(-15px) rotate(-45deg); }
+        }
+        @keyframes flamePulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+        .animate-rocket { animation: rocketFly 1.2s ease-in-out infinite; }
+        .animate-flame { animation: flamePulse 0.4s ease-in-out infinite; }
+
+        /* Page Enter Animation */
+        @keyframes pageEnter {
+            from {
+                opacity: 0;
+                transform: translateY(25px) scale(0.98);
+                filter: blur(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+        .page-enter {
+            animation: pageEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden">
 
+    <!-- Preloader จรวด -->
+    <div id="preloader" class="fixed inset-0 z-[9999] bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-500">
+        <div class="relative flex flex-col items-center justify-center">
+            <div class="animate-rocket text-5xl text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.6)]">
+                <i class="fa-solid fa-rocket"></i>
+            </div>
+            <div class="animate-flame w-4 h-6 bg-gradient-to-b from-orange-500 to-yellow-300 rounded-full blur-sm -mt-1 transform rotate-180 shadow-[0_0_12px_#f97316]"></div>
+        </div>
+        <p class="text-xs font-mono text-emerald-400 tracking-[0.3em] mt-6 animate-pulse">LOADING DATA...</p>
+    </div>
+
     <!-- Canvas พื้นหลังดาวตก (Shooting Stars Background) -->
     <canvas id="shootingStarsCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
-    <!-- Content Container (z-10 เพื่อให้อยู่เหนือดาวตก) -->
-    <div class="relative z-10">
+    <!-- Content Container (เพิ่มคลาส page-enter ให้ค่อยๆ เฟดขึ้นมา) -->
+    <div class="relative z-10 page-enter">
 
         <!-- Sticky Navigation Menu -->
         <nav class="sticky top-4 z-50 max-w-4xl mx-auto px-4 my-4">
@@ -169,8 +209,21 @@
         </main>
     </div>
 
-    <!-- Script สำหรับทำดาวตก (Shooting Stars Effect) -->
+    <!-- Script สำหรับ Preloader และทำดาวตก (Shooting Stars Effect) -->
     <script>
+        // --- 1. Preloader Script ---
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            // หน่วงเวลาเล็กน้อยเพื่อให้เห็นแอนิเมชัน
+            setTimeout(() => {
+                preloader.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500); // รอให้ fade out เสร็จค่อยซ่อน element
+            }, 800);
+        });
+
+        // --- 2. Shooting Stars Background Script ---
         const canvas = document.getElementById('shootingStarsCanvas');
         const ctx = canvas.getContext('2d');
 
@@ -182,7 +235,7 @@
             height = canvas.height = window.innerHeight;
         });
 
-        // 1. ดาวระยิบระยับแบบสถิต (Background Stars)
+        // ดาวระยิบระยับแบบสถิต (Background Stars)
         const stars = [];
         const starCount = 120;
         for (let i = 0; i < starCount; i++) {
@@ -195,7 +248,7 @@
             });
         }
 
-        // 2. ดาวตก (Shooting Stars)
+        // ดาวตก (Shooting Stars)
         const shootingStars = [];
 
         function createShootingStar() {
@@ -261,8 +314,6 @@
 
             requestAnimationFrame(animate);
         }
-
-        animate();
     </script>
 </body>
 </html>
