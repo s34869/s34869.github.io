@@ -1,250 +1,250 @@
 <!DOCTYPE html>
 <html lang="th" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประวัติการศึกษา - วสุพล สมาธิ</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Kanit', sans-serif; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประวัติการศึกษา - วสุพล สมาธิ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Kanit', sans-serif; }
 
-        @keyframes rocketFly {
-            0%, 100% { transform: translateY(0px) rotate(-45deg); }
-            50% { transform: translateY(-15px) rotate(-45deg); }
-        }
-        @keyframes flamePulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.3); opacity: 1; }
-        }
-        .animate-rocket { animation: rocketFly 1.2s ease-in-out infinite; }
-        .animate-flame { animation: flamePulse 0.4s ease-in-out infinite; }
+        @keyframes rocketFly {
+            0%, 100% { transform: translateY(0px) rotate(-45deg); }
+            50% { transform: translateY(-15px) rotate(-45deg); }
+        }
+        @keyframes flamePulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+        .animate-rocket { animation: rocketFly 1.2s ease-in-out infinite; }
+        .animate-flame { animation: flamePulse 0.4s ease-in-out infinite; }
 
-        @keyframes pageEnter {
-            from {
-                opacity: 0;
-                transform: translateY(25px) scale(0.98);
-                filter: blur(6px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
-            }
-        }
-        .page-enter {
-            animation: pageEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-    </style>
+        @keyframes pageEnter {
+            from {
+                opacity: 0;
+                transform: translateY(25px) scale(0.98);
+                filter: blur(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+        .page-enter {
+            animation: pageEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen relative overflow-x-hidden">
 
-    <!-- Canvas พื้นหลังดาวตก (Shooting Stars Canvas Engine) -->
-    <canvas id="shootingStarsCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+    <!-- Canvas พื้นหลังดาวตก (Shooting Stars Canvas Engine) -->
+    <canvas id="shootingStarsCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
-    <!-- Preloader จรวด -->
-    <div id="preloader" class="fixed inset-0 z-[9999] bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-500">
-        <div class="relative flex flex-col items-center justify-center">
-            <div class="animate-rocket text-5xl text-purple-400 drop-shadow-[0_0_15px_rgba(192,132,252,0.6)]">
-                <i class="fa-solid fa-rocket"></i>
-            </div>
-            <div class="animate-flame w-4 h-6 bg-gradient-to-b from-orange-500 to-yellow-300 rounded-full blur-sm -mt-1 transform rotate-180 shadow-[0_0_12px_#f97316]"></div>
-        </div>
-        <p class="text-xs font-mono text-purple-400 tracking-[0.3em] mt-6 animate-pulse">LOADING EDUCATION...</p>
-    </div>
+    <!-- Preloader จรวด -->
+    <div id="preloader" class="fixed inset-0 z-[9999] bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-500">
+        <div class="relative flex flex-col items-center justify-center">
+            <div class="animate-rocket text-5xl text-purple-400 drop-shadow-[0_0_15px_rgba(192,132,252,0.6)]">
+                <i class="fa-solid fa-rocket"></i>
+            </div>
+            <div class="animate-flame w-4 h-6 bg-gradient-to-b from-orange-500 to-yellow-300 rounded-full blur-sm -mt-1 transform rotate-180 shadow-[0_0_12px_#f97316]"></div>
+        </div>
+        <p class="text-xs font-mono text-purple-400 tracking-[0.3em] mt-6 animate-pulse">LOADING EDUCATION...</p>
+    </div>
 
-    <!-- Navigation Bar -->
-    <nav class="sticky top-4 z-50 max-w-4xl mx-auto px-4 my-4 page-enter">
-        <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-2 rounded-2xl shadow-xl flex justify-between items-center">
-            <a href="index.html" class="px-3 py-2 text-xs font-semibold text-slate-400 hover:text-white transition flex items-center gap-1">
-                <i class="fa-solid fa-arrow-left"></i> <span class="hidden sm:inline">หน้าแรก</span>
-            </a>
-            
-            <span class="font-bold text-sm bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent px-2">วสุพล สมาธิ</span>
+    <!-- Navigation Bar -->
+    <nav class="sticky top-4 z-50 max-w-4xl mx-auto px-4 my-4 page-enter">
+        <div class="bg-slate-900/80 backdrop-blur-md border border-slate-800 p-2 rounded-2xl shadow-xl flex justify-between items-center">
+            <a href="index.html" class="px-3 py-2 text-xs font-semibold text-slate-400 hover:text-white transition flex items-center gap-1">
+                <i class="fa-solid fa-arrow-left"></i> <span class="hidden sm:inline">หน้าแรก</span>
+            </a>
+            
+            <span class="font-bold text-sm bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent px-2">วสุพล สมาธิ</span>
 
-            <div class="flex gap-1 md:gap-2">
-                <a href="details.html" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-400 hover:text-cyan-400 border border-slate-700 hover:border-cyan-500/30 transition">
-                    <i class="fa-solid fa-user text-cyan-400 mr-1"></i> ประวัติ
-                </a>
-                <a href="education.html" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-purple-500/20 text-purple-400 border border-purple-500/50">
-                    <i class="fa-solid fa-graduation-cap text-purple-400 mr-1"></i> การศึกษา
-                </a>
-                <a href="certificates.html" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-400 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500/30 transition">
-                    <i class="fa-solid fa-award text-emerald-400 mr-1"></i> ผลงาน
-                </a>
-            </div>
-        </div>
-    </nav>
+            <div class="flex gap-1 md:gap-2">
+                <a href="details.html" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-400 hover:text-cyan-400 border border-slate-700 hover:border-cyan-500/30 transition">
+                    <i class="fa-solid fa-user text-cyan-400 mr-1"></i> ประวัติ
+                </a>
+                <a href="education.html" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-purple-500/20 text-purple-400 border border-purple-500/50">
+                    <i class="fa-solid fa-graduation-cap text-purple-400 mr-1"></i> การศึกษา
+                </a>
+                <a href="certificates.html" class="px-3 py-1.5 rounded-xl text-xs font-medium bg-slate-800 text-slate-400 hover:text-emerald-400 border border-slate-700 hover:border-emerald-500/30 transition">
+                    <i class="fa-solid fa-award text-emerald-400 mr-1"></i> ผลงาน
+                </a>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-6 py-8 page-enter relative z-10" style="animation-delay: 0.1s;">
-        <section class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden backdrop-blur-sm shadow-xl">
-            <div class="flex items-center gap-3 mb-8 border-b border-slate-800 pb-4">
-                <div class="w-10 h-10 rounded-xl bg-purple-950 text-purple-400 border border-purple-500/30 flex items-center justify-center text-lg">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold text-white">ประวัติการศึกษา (Education)</h2>
-                    <p class="text-xs text-slate-400">เส้นทางการศึกษาและความสำเร็จทางวิชาการ</p>
-                </div>
-            </div>
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6 py-8 page-enter relative z-10" style="animation-delay: 0.1s;">
+        <section class="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 md:p-8 relative overflow-hidden backdrop-blur-sm shadow-xl">
+            <div class="flex items-center gap-3 mb-8 border-b border-slate-800 pb-4">
+                <div class="w-10 h-10 rounded-xl bg-purple-950 text-purple-400 border border-purple-500/30 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-white">ประวัติการศึกษา (Education)</h2>
+                    <p class="text-xs text-slate-400">เส้นทางการศึกษาและความสำเร็จทางวิชาการ</p>
+                </div>
+            </div>
 
-            <!-- Timeline -->
-            <div class="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-slate-800">
-                <!-- มัธยมศึกษาตอนปลาย -->
-                <div class="relative pl-10">
-                    <div class="absolute left-0 top-1.5 w-7 h-7 bg-purple-950 border-2 border-purple-400 rounded-full flex items-center justify-center text-xs text-purple-400 font-bold">
-                        1
-                    </div>
-                    <div class="bg-slate-950/60 p-5 rounded-2xl border border-purple-500/50 shadow-lg shadow-purple-500/10 space-y-2">
-                        <span class="px-2.5 py-1 bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[10px] rounded-lg font-mono">ปัจจุบัน</span>
-                        <h3 class="text-lg font-bold text-white">มัธยมศึกษาตอนปลาย (ม.4 - ม.6)</h3>
-                        <p class="text-sm text-purple-300 font-semibold"><i class="fa-solid fa-atom text-purple-400 mr-1.5"></i> โครงการห้องเรียนพิเศษวิทยาศาสตร์-คณิตศาสตร์ (Gifted Program)</p>
-                        <p class="text-xs text-slate-300">ระดับชั้น ม.6/2 | เน้นการเรียนรู้ด้านวิทยาศาสตร์ เทคโนโลยี คำนวณ และภาษาต่างประเทศ</p>
-                    </div>
-                </div>
+            <!-- Timeline -->
+            <div class="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-slate-800">
+                <!-- มัธยมศึกษาตอนปลาย -->
+                <div class="relative pl-10">
+                    <div class="absolute left-0 top-1.5 w-7 h-7 bg-purple-950 border-2 border-purple-400 rounded-full flex items-center justify-center text-xs text-purple-400 font-bold">
+                        1
+                    </div>
+                    <div class="bg-slate-950/60 p-5 rounded-2xl border border-purple-500/50 shadow-lg shadow-purple-500/10 space-y-2">
+                        <span class="px-2.5 py-1 bg-purple-500/20 text-purple-300 border border-purple-500/30 text-[10px] rounded-lg font-mono">ปัจจุบัน</span>
+                        <h3 class="text-lg font-bold text-white">มัธยมศึกษาตอนปลาย (ม.4 - ม.6)</h3>
+                        <p class="text-sm text-purple-300 font-semibold"><i class="fa-solid fa-atom text-purple-400 mr-1.5"></i> โครงการห้องเรียนพิเศษวิทยาศาสตร์-คณิตศาสตร์ (Gifted Program)</p>
+                        <p class="text-xs text-slate-300">ระดับชั้น ม.6/2 | เน้นการเรียนรู้ด้านวิทยาศาสตร์ เทคโนโลยี คำนวณ และภาษาต่างประเทศ</p>
+                    </div>
+                </div>
 
-                <!-- มัธยมศึกษาตอนต้น -->
-                <div class="relative pl-10">
-                    <div class="absolute left-0 top-1.5 w-7 h-7 bg-cyan-950 border-2 border-cyan-400 rounded-full flex items-center justify-center text-xs text-cyan-400 font-bold">
-                        2
-                    </div>
-                    <div class="bg-slate-950/60 p-5 rounded-2xl border border-cyan-500/50 shadow-lg shadow-cyan-500/10 space-y-2">
-                        <h3 class="text-lg font-bold text-white">มัธยมศึกษาตอนต้น (ม.1 - ม.3)</h3>
-                        <p class="text-sm text-cyan-300 font-semibold"><i class="fa-solid fa-atom text-cyan-400 mr-1.5"></i> โครงการห้องเรียนพิเศษวิทยาศาสตร์-คณิตศาสตร์ (Gifted Program)</p>
-                        <p class="text-xs text-slate-300">ปูพื้นฐานและพัฒนาทักษะทางด้านวิทยาศาสตร์ คณิตศาสตร์ คำนวณ และกระบวนการคิดวิเคราะห์</p>
-                    </div>
-                </div>
+                <!-- มัธยมศึกษาตอนต้น -->
+                <div class="relative pl-10">
+                    <div class="absolute left-0 top-1.5 w-7 h-7 bg-cyan-950 border-2 border-cyan-400 rounded-full flex items-center justify-center text-xs text-cyan-400 font-bold">
+                        2
+                    </div>
+                    <div class="bg-slate-950/60 p-5 rounded-2xl border border-cyan-500/50 shadow-lg shadow-cyan-500/10 space-y-2">
+                        <h3 class="text-lg font-bold text-white">มัธยมศึกษาตอนต้น (ม.1 - ม.3)</h3>
+                        <p class="text-sm text-cyan-300 font-semibold"><i class="fa-solid fa-atom text-cyan-400 mr-1.5"></i> โครงการห้องเรียนพิเศษวิทยาศาสตร์-คณิตศาสตร์ (Gifted Program)</p>
+                        <p class="text-xs text-slate-300">ปูพื้นฐานและพัฒนาทักษะทางด้านวิทยาศาสตร์ คณิตศาสตร์ คำนวณ และกระบวนการคิดวิเคราะห์</p>
+                    </div>
+                </div>
 
-                <!-- ประถมศึกษา -->
-                <div class="relative pl-10">
-                    <div class="absolute left-0 top-1.5 w-7 h-7 bg-emerald-950 border-2 border-emerald-400 rounded-full flex items-center justify-center text-xs text-emerald-400 font-bold">
-                        3
-                    </div>
-                    <div class="bg-slate-950/60 p-5 rounded-2xl border border-emerald-500/50 shadow-lg shadow-emerald-500/10 space-y-2">
-                        <h3 class="text-lg font-bold text-white">ระดับประถมศึกษา (ป.1 - ป.6)</h3>
-                        <p class="text-sm text-emerald-300 font-semibold"><i class="fa-solid fa-school text-emerald-400 mr-1.5"></i> โรงเรียนบ้านหน้าควนลัง</p>
-                        <p class="text-xs text-slate-300">ปูพื้นฐานการเรียนรู้และกิจกรรมการเรียนรู้รอบด้าน</p>
-                    </div>
-                </div>
-            </div>
+                <!-- ประถมศึกษา -->
+                <div class="relative pl-10">
+                    <div class="absolute left-0 top-1.5 w-7 h-7 bg-emerald-950 border-2 border-emerald-400 rounded-full flex items-center justify-center text-xs text-emerald-400 font-bold">
+                        3
+                    </div>
+                    <div class="bg-slate-950/60 p-5 rounded-2xl border border-emerald-500/50 shadow-lg shadow-emerald-500/10 space-y-2">
+                        <h3 class="text-lg font-bold text-white">ระดับประถมศึกษา (ป.1 - ป.6)</h3>
+                        <p class="text-sm text-emerald-300 font-semibold"><i class="fa-solid fa-school text-emerald-400 mr-1.5"></i> โรงเรียนบ้านหน้าควนลัง</p>
+                        <p class="text-xs text-slate-300">ปูพื้นฐานการเรียนรู้และกิจกรรมการเรียนรู้รอบด้าน</p>
+                    </div>
+                </div>
+            </div>
 
-            <!-- Page Footer Buttons -->
-            <div class="mt-8 pt-6 border-t border-slate-800 flex justify-between items-center">
-                <a href="details.html" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-arrow-left"></i> ประวัติส่วนตัว
-                </a>
-                <a href="certificates.html" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl flex items-center gap-2 transition duration-300 transform hover:scale-105 shadow-lg shadow-emerald-500/20">
-                    ไปหน้า ผลงานและเกียรติบัตร <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-        </section>
-    </main>
+            <!-- Page Footer Buttons -->
+            <div class="mt-8 pt-6 border-t border-slate-800 flex justify-between items-center">
+                <a href="details.html" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold rounded-xl transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-arrow-left"></i> ประวัติส่วนตัว
+                </a>
+                <a href="certificates.html" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold rounded-xl flex items-center gap-2 transition duration-300 transform hover:scale-105 shadow-lg shadow-emerald-500/20">
+                    ไปหน้า ผลงานและเกียรติบัตร <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+    </main>
 
-    <!-- Scripts Section -->
-    <script>
-        // 1. Preloader Handler
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            setTimeout(() => {
-                preloader.classList.add('opacity-0', 'pointer-events-none');
-                setTimeout(() => preloader.style.display = 'none', 500);
-            }, 1500);
-        });
+    <!-- Scripts Section -->
+    <script>
+        // 1. Preloader Handler
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('opacity-0', 'pointer-events-none');
+                setTimeout(() => preloader.style.display = 'none', 500);
+            }, 1500);
+        });
 
-        // 2. Shooting Stars Canvas Animation Engine
-        const canvas = document.getElementById('shootingStarsCanvas');
-        const ctx = canvas.getContext('2d');
+        // 2. Shooting Stars Canvas Animation Engine
+        const canvas = document.getElementById('shootingStarsCanvas');
+        const ctx = canvas.getContext('2d');
 
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
 
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        });
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
 
-        // Background Static Twinkling Stars
-        const stars = [];
-        const starCount = 120;
-        for (let i = 0; i < starCount; i++) {
-            stars.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                size: Math.random() * 1.5 + 0.3,
-                alpha: Math.random(),
-                speed: Math.random() * 0.015 + 0.005
-            });
-        }
+        // Background Static Twinkling Stars
+        const stars = [];
+        const starCount = 120;
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                size: Math.random() * 1.5 + 0.3,
+                alpha: Math.random(),
+                speed: Math.random() * 0.015 + 0.005
+            });
+        }
 
-        // Shooting Stars Array
-        const shootingStars = [];
+        // Shooting Stars Array
+        const shootingStars = [];
 
-        function createShootingStar() {
-            shootingStars.push({
-                x: Math.random() * width * 1.2 - width * 0.2,
-                y: Math.random() * height * 0.4,
-                length: Math.random() * 90 + 60,
-                speed: Math.random() * 9 + 6,
-                size: Math.random() * 1.5 + 1,
-                angle: 45 * Math.PI / 180,
-                alpha: 1
-            });
-        }
+        function createShootingStar() {
+            shootingStars.push({
+                x: Math.random() * width * 1.2 - width * 0.2,
+                y: Math.random() * height * 0.4,
+                length: Math.random() * 90 + 60,
+                speed: Math.random() * 9 + 6,
+                size: Math.random() * 1.5 + 1,
+                angle: 45 * Math.PI / 180,
+                alpha: 1
+            });
+        }
 
-        setInterval(() => {
-            if (shootingStars.length < 3 && Math.random() < 0.75) {
-                createShootingStar();
-            }
-        }, 1200);
+        setInterval(() => {
+            if (shootingStars.length < 3 && Math.random() < 0.75) {
+                createShootingStar();
+            }
+        }, 1200);
 
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
 
-            // Draw Background Twinkling Stars
-            stars.forEach(star => {
-                star.alpha += star.speed;
-                if (star.alpha > 1 || star.alpha < 0) star.speed = -star.speed;
-                ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(star.alpha)})`;
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-                ctx.fill();
-            });
+            // Draw Background Twinkling Stars
+            stars.forEach(star => {
+                star.alpha += star.speed;
+                if (star.alpha > 1 || star.alpha < 0) star.speed = -star.speed;
+                ctx.fillStyle = `rgba(255, 255, 255, ${Math.abs(star.alpha)})`;
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
 
-            // Draw & Update Shooting Stars
-            for (let i = shootingStars.length - 1; i >= 0; i--) {
-                const star = shootingStars[i];
-                
-                const tailX = star.x - Math.cos(star.angle) * star.length;
-                const tailY = star.y - Math.sin(star.angle) * star.length;
+            // Draw & Update Shooting Stars
+            for (let i = shootingStars.length - 1; i >= 0; i--) {
+                const star = shootingStars[i];
+                
+                const tailX = star.x - Math.cos(star.angle) * star.length;
+                const tailY = star.y - Math.sin(star.angle) * star.length;
 
-                const gradient = ctx.createLinearGradient(star.x, star.y, tailX, tailY);
-                gradient.addColorStop(0, `rgba(56, 189, 248, ${star.alpha})`); // Cyan
-                gradient.addColorStop(0.4, `rgba(168, 85, 247, ${star.alpha * 0.6})`); // Purple
-                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                const gradient = ctx.createLinearGradient(star.x, star.y, tailX, tailY);
+                gradient.addColorStop(0, `rgba(56, 189, 248, ${star.alpha})`); // Cyan
+                gradient.addColorStop(0.4, `rgba(168, 85, 247, ${star.alpha * 0.6})`); // Purple
+                gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
-                ctx.strokeStyle = gradient;
-                ctx.lineWidth = star.size;
-                ctx.lineCap = 'round';
-                ctx.beginPath();
-                ctx.moveTo(star.x, star.y);
-                ctx.lineTo(tailX, tailY);
-                ctx.stroke();
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = star.size;
+                ctx.lineCap = 'round';
+                ctx.beginPath();
+                ctx.moveTo(star.x, star.y);
+                ctx.lineTo(tailX, tailY);
+                ctx.stroke();
 
-                star.x += Math.cos(star.angle) * star.speed;
-                star.y += Math.sin(star.angle) * star.speed;
-                star.alpha -= 0.008;
+                star.x += Math.cos(star.angle) * star.speed;
+                star.y += Math.sin(star.angle) * star.speed;
+                star.alpha -= 0.008;
 
-                if (star.alpha <= 0 || star.x > width + 100 || star.y > height + 100) {
-                    shootingStars.splice(i, 1);
-                }
-            }
+                if (star.alpha <= 0 || star.x > width + 100 || star.y > height + 100) {
+                    shootingStars.splice(i, 1);
+                }
+            }
 
-            requestAnimationFrame(animate);
-        }
+            requestAnimationFrame(animate);
+        }
 
-        animate();
-    </script>
+        animate();
+    </script>
 </body>
 </html>
